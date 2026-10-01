@@ -1,0 +1,28 @@
+# Python virtual environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets: env files and private keys must never be committed
+.env
+*.pem
+*.p8
+*.key
+
+# dbt build output and installed packages
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+logs/
+
+# Data files live outside Git
+data/
+*.gz
+*.zip
+
+# Airflow runtime files
+airflow/logs/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
