@@ -1,0 +1,13 @@
+# Default owner for everything in the repo
+*                       @ManasaMLPython
+
+# Platform: Snowflake objects and CI/CD pipelines
+/snowflake/             @ManasaMLPython
+/.github/workflows/     @ManasaMLPython
+
+# Transformation layer
+/dbt/                   @ManasaMLPython
+
+# Orchestration and source simulator
+/airflow/               @ManasaMLPython
+/simulator/             @ManasaMLPython
