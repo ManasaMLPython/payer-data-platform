@@ -9,3 +9,4 @@ All notable changes to this project are documented here.
 - DEV/TEST/PROD landing buckets via CloudFormation, us-east-2 (PAYER-6)
 - AWS CLI setup and S3 upload helper with dry-run and PROD guard (PAYER-7)
 - ADR-001 environment strategy, architecture diagram v1 (PAYER-8)
+- Compression script for CMS samples; 5 feeds landed in DEV sample/ (PAYER-10)
