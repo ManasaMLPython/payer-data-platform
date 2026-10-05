@@ -1,8 +1,8 @@
 # Runbook — Snowflake access
 
 - **Ticket:** PAYER-14
-- **Account:** `SFBTKIB-OF74921` · Enterprise · AWS us-east-2 (Ohio)
-- **Admin user:** `MANUBITLA` — web login with password + MFA; tools use key-pair authentication
+- **Account:** `<ACCOUNT_IDENTIFIER>` · Enterprise · AWS us-east-2 (Ohio)
+- **Admin user:** `<ADMIN_USER>` — web login with password + MFA; tools use key-pair authentication
 
 ## Key pair (one-time setup)
 Keys live in `C:\Users\<you>\.snowflake\keys\` — outside the repo, never committed.
@@ -21,8 +21,8 @@ grep -v "PUBLIC KEY" rsa_key.pub | tr -d '\n'; echo                             
 ## Register the public key
 ```sql
 USE ROLE SECURITYADMIN;
-ALTER USER MANUBITLA SET RSA_PUBLIC_KEY='<one-line public key>';
-DESC USER MANUBITLA;   -- note RSA_PUBLIC_KEY_FP
+ALTER USER <ADMIN_USER> SET RSA_PUBLIC_KEY='<one-line public key>';
+DESC USER <ADMIN_USER>;   -- note RSA_PUBLIC_KEY_FP
 ```
 Verify the fingerprint locally — it must equal the value after `SHA256:`:
 ```bash
@@ -31,7 +31,7 @@ openssl rsa -pubin -in rsa_key.pub -outform DER | openssl dgst -sha256 -binary |
 
 ## Snowflake CLI connection
 ```powershell
-snow connection add --connection-name payer_admin --account SFBTKIB-OF74921 --user MANUBITLA `
+snow connection add --connection-name payer_admin --account <ACCOUNT_IDENTIFIER> --user <ADMIN_USER> `
   --role ACCOUNTADMIN --warehouse COMPUTE_WH --authenticator SNOWFLAKE_JWT `
   --private-key-file "C:\Users\<you>\.snowflake\keys\rsa_key.p8" --no-interactive
 snow connection set-default payer_admin
