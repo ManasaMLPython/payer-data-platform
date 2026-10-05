@@ -12,3 +12,4 @@ All notable changes to this project are documented here.
 - Compression script for CMS samples; 5 feeds landed in DEV sample/ (PAYER-10)
 - Source column layouts and feed mapping for 5 feeds (PAYER-11)
 - Delivery standards and feed contracts v0.9 draft (PAYER-12)
+- Source simulator design (PAYER-13)
