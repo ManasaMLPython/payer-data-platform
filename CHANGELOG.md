@@ -13,3 +13,4 @@ All notable changes to this project are documented here.
 - Source column layouts and feed mapping for 5 feeds (PAYER-11)
 - Delivery standards and feed contracts v0.9 draft (PAYER-12)
 - Source simulator design (PAYER-13)
+- Snowflake account (Enterprise, AWS us-east-2), key-pair access and CLI connection runbook (PAYER-14)
