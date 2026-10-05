@@ -1,7 +1,7 @@
 # Runbook — Snowflake access
 
 - **Ticket:** PAYER-14
-- **Account:** `<ACCOUNT_IDENTIFIER>` · Enterprise · AWS us-east-2 (Ohio)
+- **Account:** `<ACCOUNT_IDENTIFIER>` · Enterprise · AWS us-east-2 (Ohio) 
 - **Admin user:** `<ADMIN_USER>` — web login with password + MFA; tools use key-pair authentication
 
 ## Key pair (one-time setup)
