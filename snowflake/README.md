@@ -35,15 +35,17 @@ schemachange deploy --root-folder snowflake/migrations/environment `
 Windows PowerShell strips double quotes from native-command arguments — hence `\"` inside `--vars`.
 
 ## Deployed so far
-## Deployed so far
 | Layer | Version | Creates |
 |---|---|---|
 | account | 1.0.0 | DEV_DB, TEST_DB (retention 1 day), PROD_DB (retention 7 days) |
 | account | 1.1.0 | 11 roles (ENGINEER, LOADER, TRANSFORMER per env; ANALYST for TEST/PROD), all given to SYSADMIN; 5 program users (TYPE = SERVICE) with their roles |
 | environment | 1.0.0 | RAW, AUDIT, UTIL schemas (managed access) |
 | environment | 1.1.0 | Privileges per role: LOADER writes RAW/AUDIT; TRANSFORMER reads RAW/AUDIT and creates its own schemas; ENGINEER full in DEV, read only in TEST/PROD; current + future grants |
+| account | 1.2.0 | DEV_WH / TEST_WH / PROD_WH (X-Small, auto-suspend 60s, 1-hour statement timeout); resource monitors DEV_RM 10, TEST_RM 5, PROD_RM 15 credits (notify 75%, suspend 100%, suspend immediately 110%), ACCOUNT_RM 40 (notify only); USAGE per environment's roles; program users' default warehouses |
 
 ## Role tests (DEV, verified)
 - DEV_TRANSFORMER: create/drop own schema ✔ · create table in RAW ✘ (refused)
 - DEV_LOADER: create schema ✘ (refused)
 - Future grants on RAW present for DEV_LOADER and DEV_TRANSFORMER
+- Always run `USE SECONDARY ROLES NONE;` after `USE ROLE <role>` when testing — otherwise privileges from your other roles are used in the background and hide missing grants.
+- DEV_TRANSFORMER: use DEV_WH ✔ · use TEST_WH ✘ · use PROD_WH ✘
