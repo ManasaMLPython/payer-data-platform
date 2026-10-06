@@ -15,3 +15,4 @@ All notable changes to this project are documented here.
 - Source simulator design (PAYER-13)
 - Snowflake account (Enterprise, AWS us-east-2), key-pair access and CLI connection runbook (PAYER-14)
 - schemachange with account and environment layers; DEV/TEST/PROD databases; RAW/AUDIT/UTIL schemas in DEV (PAYER-15)
+- RBAC: roles per environment, program users, privileges with future grants; deployed and tested in DEV (PAYER-16)
