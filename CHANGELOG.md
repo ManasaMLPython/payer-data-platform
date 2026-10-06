@@ -14,3 +14,4 @@ All notable changes to this project are documented here.
 - Delivery standards and feed contracts v0.9 draft (PAYER-12)
 - Source simulator design (PAYER-13)
 - Snowflake account (Enterprise, AWS us-east-2), key-pair access and CLI connection runbook (PAYER-14)
+- schemachange with account and environment layers; DEV/TEST/PROD databases; RAW/AUDIT/UTIL schemas in DEV (PAYER-15)
