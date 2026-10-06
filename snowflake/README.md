@@ -30,12 +30,20 @@ schemachange deploy --root-folder snowflake/migrations/account `
 # Environment layer (DEV)
 schemachange deploy --root-folder snowflake/migrations/environment `
   --change-history-table DEV_DB.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table `
-  --vars '{\"database\": \"DEV_DB\"}' --dry-run
+  --vars '{\"database\": \"DEV_DB\", \"env\": \"DEV\"}' --dry-run
 ```
 Windows PowerShell strips double quotes from native-command arguments — hence `\"` inside `--vars`.
 
 ## Deployed so far
+## Deployed so far
 | Layer | Version | Creates |
 |---|---|---|
 | account | 1.0.0 | DEV_DB, TEST_DB (retention 1 day), PROD_DB (retention 7 days) |
+| account | 1.1.0 | 11 roles (ENGINEER, LOADER, TRANSFORMER per env; ANALYST for TEST/PROD), all given to SYSADMIN; 5 program users (TYPE = SERVICE) with their roles |
 | environment | 1.0.0 | RAW, AUDIT, UTIL schemas (managed access) |
+| environment | 1.1.0 | Privileges per role: LOADER writes RAW/AUDIT; TRANSFORMER reads RAW/AUDIT and creates its own schemas; ENGINEER full in DEV, read only in TEST/PROD; current + future grants |
+
+## Role tests (DEV, verified)
+- DEV_TRANSFORMER: create/drop own schema ✔ · create table in RAW ✘ (refused)
+- DEV_LOADER: create schema ✘ (refused)
+- Future grants on RAW present for DEV_LOADER and DEV_TRANSFORMER
